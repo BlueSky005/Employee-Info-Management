@@ -23,8 +23,8 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" @click="loggedIn" id="loginBtn" class="btn btn-warning btn-lg btn-block"
-        data-dismiss="modal" style="color: black;"><i class="fa fa-sign-in" aria-hidden="true"></i>&nbsp;&nbsp;Login</button>
+        <button type="button" id="loginBtn" class="btn btn-warning btn-lg btn-block"
+        data-dismiss="modal" style="color: black;" @click="changeLoginStatus()"><i class="fa fa-sign-in" aria-hidden="true"></i>&nbsp;&nbsp;Login</button>
       </div>
     </div>
   </div>
@@ -36,6 +36,14 @@ import jQuery from 'jquery';
 
 export default {
 
+  props: {
+    changeLoginStatus: {
+      type: Function,
+    },
+    loginCurrentStatus: {
+      type: Boolean,
+    },
+  },
   mounted() {
     jQuery('#exampleModalCenter').modal('show');
   },

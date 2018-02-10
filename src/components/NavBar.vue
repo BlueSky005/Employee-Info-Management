@@ -10,7 +10,7 @@
       <div class="collapse navbar-collapse" id="navbarColor01">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
-            <router-link to='/'><h4 class="nav-link">Inventory <span class="sr-only">(current)</span></h4></router-link>
+            <router-link to='/inventory'><h4 class="nav-link">Inventory <span class="sr-only">(current)</span></h4></router-link>
           </li>
           <li class="nav-item">
             <router-link to='/search'><h4 class="nav-link">Search</h4></router-link>

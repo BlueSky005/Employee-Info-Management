@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div class="container">
+    <div class="container" v-if="loginStatus">
         <div class="row">
           <NavBar></NavBar>
         </div>
@@ -11,6 +11,11 @@
           <Footer></Footer>
         </div>
     </div>
+    <div class="container" v-else>
+      <div class="row">
+        <Login :changeLoginStatus="changeLoginStatus" :loginCurrentStatus="loginStatus"></Login>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -18,13 +23,25 @@
 
 import NavBar from './components/NavBar';
 import Footer from './components/Footer';
+import Login from './components/Login';
 
 export default {
 
-  name: 'App',
+  data() {
+    return {
+      name: 'App',
+      loginStatus: false,
+    };
+  },
+  methods: {
+    changeLoginStatus() {
+      this.loginStatus = !this.loginStatus;
+    },
+  },
   components: {
     NavBar,
     Footer,
+    Login,
   },
 };
 </script>

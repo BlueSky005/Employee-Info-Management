@@ -4,8 +4,9 @@ import Search from './components/Search';
 import About from './components/About';
 
 export const routes = [
-  { path: '/', component: Login},
-  { path: '/inventory', component: Inventory},
-  { path: '/search', component: Search},
-  { path: '/about', component: About},
+  { path: '/', redirect: '/inventory' },
+  { path: '/login', component: Login },
+  { path: '/inventory', component: Inventory },
+  { path: '/search', component: Search },
+  { path: '/about', component: About },
 ];
