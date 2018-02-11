@@ -1,5 +1,5 @@
 <template lang="html">
-<footer class="col-lg-12"><label class="footerLabel">&copy;Employee Information System</label></footer>
+<footer class="col-lg-12"><label class="footerLabel">&copy;&nbsp;Employee Information System</label></footer>
 </template>
 
 <style>

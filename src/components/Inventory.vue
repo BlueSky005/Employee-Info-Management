@@ -8,7 +8,7 @@
        <div class="form-group row">
          <label for="inputName" class="col-sm-3 col-form-label">Name</label>
          <div class="col-sm-9">
-           <input type="text" class="form-control" id="inputName" placeholder="Name">
+           <input type="text" class="form-control" id="inputName" placeholder="Name" ref="name">
          </div>
        </div>
      <div class="form-group row">
@@ -81,6 +81,9 @@
 
 <script>
 export default {
+  mounted() {
+    this.$refs.name.focus();
+  },
 };
 </script>
 
