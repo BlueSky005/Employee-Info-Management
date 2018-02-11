@@ -50,4 +50,8 @@ export default {
 
 @import 'bootstrap';
 
+body {
+  background-image: url('/static/bg.jpg');
+}
+
 </style>
