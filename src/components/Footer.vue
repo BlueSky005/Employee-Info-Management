@@ -7,8 +7,9 @@
   margin-left: 20px;
 	}
 footer {
-					color: #4a4a4a;
+					color: #9ba0bd;
+          background-color: #575c7a;
 					padding: 10px 10px 10px 0px;
-					background-image: url(../footer_new1.jpg);
+					/* background-image: url(../footer_new1.jpg); */
 				}
 </style>

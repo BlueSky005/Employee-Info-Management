@@ -49,9 +49,10 @@ export default {
 <style>
 
 @import 'bootstrap';
+@import '../static/animate.css';
 
 body {
-  background-image: url('/static/bg.jpg');
+  background-image: url('/static/background_gradient.jpg');
 }
 
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal fade" id="exampleModalCenter" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -13,7 +13,7 @@
           <div class="input-group-prepend">
             <div class="input-group-text"><i class="fa fa-user" aria-hidden="true"></i></div>
            </div>
-           <input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="Username" autofocus>
+           <input type="text" ref="userName" class="form-control" id="inlineFormInputGroupUsername" placeholder="Username" autofocus>
         </div><br  />
         <div class="input-group">
           <div class="input-group-prepend">
@@ -45,7 +45,9 @@ export default {
     },
   },
   mounted() {
+    this.$refs.userName.focus();
     jQuery('#exampleModalCenter').modal('show');
+
   },
 };
 </script>

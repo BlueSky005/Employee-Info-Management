@@ -1,6 +1,6 @@
 <template>
-    <nav class="navbar navbar-expand-lg navbar-expand-md navbar-dark bg-dark col-lg-12">
-      <h3><i class="fa fa-arrows fa-lg" aria-hidden="true"></i>&nbsp;&nbsp;EIS</h3>
+    <nav style="background-image: url(/static/bg2.JPG);" class="navbar navbar-expand-lg navbar-expand-md navbar-dark bg-primary col-lg-12">
+      <h3 style="color: #fff;">&nbsp;&nbsp;EIS</h3>
       <button class="navbar-toggler" type="button"
       data-toggle="collapse" data-target="#navbarColor01"
       aria-controls="navbarColor01" aria-expanded="false"
@@ -20,6 +20,20 @@
             <router-link to='/about'><h4 class="nav-link">About</h4></router-link>
           </li>
         </ul>
+        <ul class="nav navbar-nav navbar-right">
+											<!-- <li class="nav active"><a href="index.html">Home</a></li>
+											<li class="nav"><a href="#">About Us</a></li> -->
+
+                      <div class="btn-group" role="group">
+    <button style="background-image: url(/static/bg2.JPG);" id="btnGroupDrop1" type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Welcome Guest
+    </button>
+    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1" style="text-align: center;">
+      <a class="dropdown-item" href="#"><img src="/static/user.png" /></a>
+      <a class="dropdown-item" href="#">Log Out</a>
+    </div>
+  </div>
+										</ul>
       </div>
     </nav>
 </template>

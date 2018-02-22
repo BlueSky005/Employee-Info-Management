@@ -1,6 +1,6 @@
 <template>
   <div>
-     <h4>Content inside the About goes here ...</h4>
+     <h4 class="animated fadeIn">Content inside the About goes here ...</h4>
   </div>
 </template>
 
