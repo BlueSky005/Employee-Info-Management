@@ -61,37 +61,19 @@
 <thead>
   <tr>
     <th scope="col">Name</th>
+    <th scope="col">Gender</th>
     <th scope="col">Profession</th>
-    <th scope="col">Email</th>
-    <th scope="col">Address</th>
     <th scope="col">Edit</th>
     <th scope="col">Remove</th>
   </tr>
 </thead>
 <tbody>
-  <tr class="table-active">
-    <th scope="row">Active</th>
-    <td>Column content</td>
-    <td>Column content</td>
-    <td>Column content</td>
+  <tr class="table-primary" v-for="filteredEmployee in filteredEmployees">
+    <td>{{ filteredEmployee.emp_name }}</td>
+    <td>{{ filteredEmployee.gender }}</td>
+    <td>{{ filteredEmployee.profession }}</td>
     <td><i class="fa fa-pencil" aria-hidden="true" style="color: green;" @click="editClicked()"></i></td>
     <td><i class="fa fa-times" aria-hidden="true" style="color: red;" @click="deleteClicked()"></i></td>
-  </tr>
-  <tr>
-    <th scope="row">Default</th>
-    <td>Column content</td>
-    <td>Column content</td>
-    <td>Column content</td>
-    <td><i class="fa fa-pencil" aria-hidden="true" style="color: green;"></i></td>
-    <td><i class="fa fa-times" aria-hidden="true" style="color: red;"></i></td>
-  </tr>
-  <tr class="table-primary">
-    <th scope="row">Primary</th>
-    <td>Column content</td>
-    <td>Column content</td>
-    <td>Column content</td>
-  <td><i class="fa fa-pencil" aria-hidden="true" style="color: green;"></i></td>
-    <td><i class="fa fa-times" aria-hidden="true" style="color: red;"></i></td>
   </tr>
 </tbody>
 </table>
@@ -119,7 +101,7 @@
 
 import EditEmployee from './EditEmployee';
 import DeleteEmployee from './DeleteEmployee';
-import { profession } from '../firebase';
+import { profession, employee } from '../firebase';
 
 export default {
   data() {
@@ -131,17 +113,19 @@ export default {
       editClickedStatus: false,
       deleteClickedStatus: false,
       professionOptions: [],
+      filteredEmployees: [],
     };
   },
   methods: {
     searchClicked() {
-      this.searchClickedStatus = !this.searchClickedStatus;
-      profession.on('value', (snapshot) => {
-        snapshot.forEach((childsnapShot) => {
-          console.log(childsnapShot.val());
-        });
+      this.searchClickedStatus = true;
+
+      const filteredData = [];
+      employee.orderByChild('profession').equalTo(this.selectedProfession).on('child_added', (snapshot) => {
+        filteredData.push(snapshot.val());
       });
-      console.log(this.selectedProfession);
+      this.filteredEmployees = filteredData;
+      // console.log(this.selectedProfession);
     },
     editClicked() {
       this.editClickedStatus = !this.editClickedStatus;

@@ -165,8 +165,6 @@ export default {
         this.isInvalid.addressInvalid = true;
       }
       else {
-        // Talk to firebase Db ...
-
         employee.push({
           emp_name: this.$refs.name.value,
           email: this.$refs.email.value,
@@ -176,7 +174,6 @@ export default {
           gender: this.gender,
           address: this.$refs.address.value,
         });
-        // TODO: Clear all the inputs and give a confirmation message.
         this.$refs.name.value = '';
         this.$refs.email.value = '';
         this.$refs.phone.value = '';
@@ -186,7 +183,7 @@ export default {
           this.confirmMsgFlag = false;
           this.$refs.name.focus();
         }, 3000);
-      }
+      } // end of else part
     },
   },
 };
