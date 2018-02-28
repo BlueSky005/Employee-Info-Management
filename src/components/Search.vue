@@ -28,7 +28,7 @@
       <div class="form-group row offset-lg-2 offset-sm-1" v-if="selectedOption == 'Name'">
         <label for="inputEmail3" class="col-lg-2 col-md-2 col-form-label">Name</label>
         <div class="col-sm-10 col-md-8 col-lg-6">
-          <input type="text" class="form-control" id="inputEmail3" placeholder="Name">
+          <input type="text" v-model="searchName" class="form-control" id="inputEmail3" placeholder="What's the name to search ?">
         </div>
       </div>
 
@@ -114,18 +114,28 @@ export default {
       deleteClickedStatus: false,
       professionOptions: [],
       filteredEmployees: [],
+      searchName: '',
     };
   },
   methods: {
     searchClicked() {
       this.searchClickedStatus = true;
-
-      const filteredData = [];
-      employee.orderByChild('profession').equalTo(this.selectedProfession).on('child_added', (snapshot) => {
-        filteredData.push(snapshot.val());
-      });
-      this.filteredEmployees = filteredData;
-      // console.log(this.selectedProfession);
+      if (this.selectedOption === 'Profession') {
+        const filteredData = [];
+        employee.orderByChild('profession').equalTo(this.selectedProfession).on('child_added', (snapshot) => {
+          filteredData.push(snapshot.val());
+        });
+        this.filteredEmployees = filteredData;
+        // console.log(this.selectedProfession);
+      }
+      else if (this.selectedOption === 'Name') {
+        const filteredData = [];
+        employee.orderByChild('emp_name').equalTo(this.searchName).on('child_added', (snapshot) => {
+          filteredData.push(snapshot.val());
+        });
+        this.filteredEmployees = filteredData;
+        // console.log(this.selectedProfession);
+      }
     },
     editClicked() {
       this.editClickedStatus = !this.editClickedStatus;

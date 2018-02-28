@@ -23,21 +23,21 @@
  <div class="form-group row">
    <label for="inputEmail2" class="col-sm-3 col-form-label">Name</label>
    <div class="col-sm-9 col-lg-8 col-md-9">
-     <input type="email" ref="name" class="form-control" :class=" { 'is-invalid': isInvalid.nameInvalid }" id="inputEmail2" placeholder="Name">
+     <input type="email" ref="name" class="form-control" :class=" { 'is-invalid': isInvalid.nameInvalid }" id="inputEmail2" placeholder="What's the name ?">
      <div class="invalid-feedback animated flipInX">Please enter the user name.</div>
    </div>
  </div>
 <div class="form-group row">
  <label for="inputEmail3" class="col-sm-3 col-form-label">Email</label>
  <div class="col-sm-9 col-lg-8">
-   <input type="email" ref="email" class="form-control" :class=" { 'is-invalid': isInvalid.emailInvalid }" id="inputEmail3" placeholder="Email">
+   <input type="email" ref="email" class="form-control" :class=" { 'is-invalid': isInvalid.emailInvalid }" id="inputEmail3" placeholder="Enter the Email Id ...">
    <div class="invalid-feedback animated flipInX">Please enter a valid email address.</div>
  </div>
 </div>
 <div class="form-group row">
  <label for="inputEmail3" class="col-sm-3 col-form-label">Phone</label>
  <div class="col-sm-9 col-lg-8">
-   <input type="text" ref="phone" class="form-control" :class=" { 'is-invalid': isInvalid.phoneNoInvalid }" id="inputEmail3" placeholder="Phone">
+   <input type="text" ref="phone" class="form-control" :class=" { 'is-invalid': isInvalid.phoneNoInvalid }" id="inputEmail3" placeholder="Enter the contact number ...">
    <div class="invalid-feedback animated flipInX">Please enter the contact number.</div>
  </div>
 </div>
@@ -74,7 +74,7 @@
 <div class="form-group row">
  <label for="inputEmail3" class="col-sm-3 col-form-label">Address</label>
  <div class="col-sm-9 col-lg-8">
-    <textarea ref="address" class="form-control" :class=" { 'is-invalid': isInvalid.addressInvalid }" id="exampleFormControlTextarea1" rows="3"></textarea>
+    <textarea placeholder="Enter the address ..." ref="address" class="form-control" :class=" { 'is-invalid': isInvalid.addressInvalid }" id="exampleFormControlTextarea1" rows="3"></textarea>
     <div class="invalid-feedback animated flipInX">Please enter your address.</div>
  </div>
 </div>
