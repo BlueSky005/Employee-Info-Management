@@ -13,6 +13,13 @@
 
 <form class="col-lg-11 col-md-8">
  <br />
+
+ <div class="form-group row offset-lg-1" v-if="confirmMsgFlag">
+ <div class="alert alert-dismissible alert-success">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <i class="fa fa-info-circle"></i>&nbsp;&nbsp;You just added an employee <strong>successfully !</strong></a>.
+</div>
+</div>
  <div class="form-group row">
    <label for="inputEmail2" class="col-sm-3 col-form-label">Name</label>
    <div class="col-sm-9 col-lg-8 col-md-9">
@@ -37,7 +44,7 @@
 <div class="form-group row">
  <label for="inputEmail3" class="col-sm-3 col-form-label">Age</label>
  <div class="col-sm-9 col-lg-8">
-   <select class="form-control" id="exampleFormControlSelect1">
+   <select class="form-control" id="exampleFormControlSelect1" v-model="selectedAge">
      <option v-for="ageOption in ageOptions">{{ ageOption }}</option>
    </select>
  </div>
@@ -45,7 +52,7 @@
 <div class="form-group row">
  <label for="inputEmail3" class="col-sm-3 col-form-label">Profession</label>
  <div class="col-sm-9 col-lg-8">
-   <select class="form-control" id="exampleFormControlSelect1">
+   <select class="form-control" id="exampleFormControlSelect1" v-model="selectedInventoryProfession">
      <option v-for="professionOption in professionOptions">{{ professionOption }}</option>
    </select>
  </div>
@@ -92,7 +99,7 @@ class="btn btn-primary offset-lg-3 offset-md-3 offset-sm-3 offset-xsm-1">
 <script>
 
 import _ from 'lodash';
-import { gender, profession } from '../firebase';
+import { gender, profession, employee } from '../firebase';
 
 export default {
 
@@ -101,7 +108,10 @@ export default {
       gender: 'Male',
       genderOptions: [],
       professionOptions: [],
+      selectedInventoryProfession: 'Full Stack Developer',
       ageOptions: _.range(20, 61),
+      selectedAge: 20,
+      confirmMsgFlag: false,
       isInvalid: {
         nameInvalid: false,
         emailInvalid: false,
@@ -130,32 +140,52 @@ export default {
 
   methods: {
     addEmployee() {
-      if(this.$refs.name.value == '') {
-        this.isInvalid.nameInvalid = true;
-      }
-      else if(this.$refs.name.value != '') {
+      if (this.$refs.name.value !== '') {
         this.isInvalid.nameInvalid = false;
       }
-      if(this.$refs.email.value == '') {
-        this.isInvalid.emailInvalid = true;
-      }
-      else if(this.$refs.email.value != '') {
+      if (this.$refs.email.value !== '') {
         this.isInvalid.emailInvalid = false;
       }
-      if(this.$refs.phone.value == '') {
-        this.isInvalid.phoneNoInvalid = true;
-      }
-      else if(this.$refs.phone.value != '') {
+      if (this.$refs.phone.value !== '') {
         this.isInvalid.phoneNoInvalid = false;
       }
-      if(this.$refs.address.value == '') {
-        this.isInvalid.addressInvalid = true;
-      }
-      else if(this.$refs.address.value != '') {
+      if (this.$refs.address.value !== '') {
         this.isInvalid.addressInvalid = false;
+      }
+      if (this.$refs.name.value === '') {
+        this.isInvalid.nameInvalid = true;
+      }
+      else if (this.$refs.email.value === '') {
+        this.isInvalid.emailInvalid = true;
+      }
+      else if (this.$refs.phone.value === '') {
+        this.isInvalid.phoneNoInvalid = true;
+      }
+      else if (this.$refs.address.value === '') {
+        this.isInvalid.addressInvalid = true;
       }
       else {
         // Talk to firebase Db ...
+
+        employee.push({
+          emp_name: this.$refs.name.value,
+          email: this.$refs.email.value,
+          phone: this.$refs.phone.value,
+          age: this.selectedAge,
+          profession: this.selectedInventoryProfession,
+          gender: this.gender,
+          address: this.$refs.address.value,
+        });
+        // TODO: Clear all the inputs and give a confirmation message.
+        this.$refs.name.value = '';
+        this.$refs.email.value = '';
+        this.$refs.phone.value = '';
+        this.$refs.address.value = '';
+        this.confirmMsgFlag = true;
+        setTimeout(() => {
+          this.confirmMsgFlag = false;
+          this.$refs.name.focus();
+        }, 3000);
       }
     },
   },

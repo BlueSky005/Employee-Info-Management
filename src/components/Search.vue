@@ -20,7 +20,7 @@
       <div class="form-group row offset-lg-2 offset-sm-1" v-if="selectedOption == 'Profession'">
         <label for="inputEmail3" class="col-lg-2 col-md-2 col-form-label">Profession</label>
         <div class="col-sm-10 col-md-8 col-lg-6">
-          <select class="form-control" id="exampleFormControlSelect1">
+          <select class="form-control" id="exampleFormControlSelect1" v-model="selectedProfession">
             <option v-for="professionOption in professionOptions">{{ professionOption }}</option>
           </select>
         </div>
@@ -126,6 +126,7 @@ export default {
     return {
       SearchOptions: ['Select an option ...', 'Name', 'Profession'],
       selectedOption: 'Select an option ...',
+      selectedProfession: 'Select a profession ...',
       searchClickedStatus: false,
       editClickedStatus: false,
       deleteClickedStatus: false,
@@ -135,6 +136,12 @@ export default {
   methods: {
     searchClicked() {
       this.searchClickedStatus = !this.searchClickedStatus;
+      profession.on('value', (snapshot) => {
+        snapshot.forEach((childsnapShot) => {
+          console.log(childsnapShot.val());
+        });
+      });
+      console.log(this.selectedProfession);
     },
     editClicked() {
       this.editClickedStatus = !this.editClickedStatus;
