@@ -68,12 +68,12 @@
   </tr>
 </thead>
 <tbody>
-  <tr class="table-primary" v-for="filteredEmployee in filteredEmployees">
-    <td>{{ filteredEmployee.emp_name }}</td>
-    <td>{{ filteredEmployee.gender }}</td>
-    <td>{{ filteredEmployee.profession }}</td>
-    <td><i class="fa fa-pencil" aria-hidden="true" style="color: green;" @click="editClicked()"></i></td>
-    <td><i class="fa fa-times" aria-hidden="true" style="color: red;" @click="deleteClicked()"></i></td>
+  <tr class="table-primary" v-for="(filteredEmp, index) of filteredEmployees" v-bind:key="index">
+    <td>{{ filteredEmp.emp_name }}</td>
+    <td>{{ filteredEmp.gender }}</td>
+    <td>{{ filteredEmp.profession }}</td>
+    <td><i class="fa fa-pencil" aria-hidden="true" style="color: green;" @click="editClicked(filteredEmp._id)"></i></td>
+    <td><i class="fa fa-times" aria-hidden="true" style="color: red;" @click="deleteClicked(filteredEmp._id)"></i></td>
   </tr>
 </tbody>
 </table>
@@ -99,6 +99,7 @@
 
 <script>
 
+import _ from 'lodash';
 import EditEmployee from './EditEmployee';
 import DeleteEmployee from './DeleteEmployee';
 import { profession, employee } from '../firebase';
@@ -113,10 +114,14 @@ export default {
       editClickedStatus: false,
       deleteClickedStatus: false,
       professionOptions: [],
-      filteredEmployees: [],
       searchName: '',
+      testing: '',
     };
   },
+  firebase: {
+    filteredEmployees: employee,
+  },
+
   methods: {
     searchClicked() {
       this.searchClickedStatus = true;
@@ -126,19 +131,20 @@ export default {
           filteredData.push(snapshot.val());
         });
         this.filteredEmployees = filteredData;
-        // console.log(this.selectedProfession);
       }
       else if (this.selectedOption === 'Name') {
         const filteredData = [];
         employee.orderByChild('emp_name').equalTo(this.searchName).on('child_added', (snapshot) => {
           filteredData.push(snapshot.val());
         });
+
         this.filteredEmployees = filteredData;
         // console.log(this.selectedProfession);
       }
     },
-    editClicked() {
+    editClicked(key) {
       this.editClickedStatus = !this.editClickedStatus;
+      this.testing = key;
     },
     deleteClicked() {
       this.deleteClickedStatus = !this.deleteClickedStatus;
