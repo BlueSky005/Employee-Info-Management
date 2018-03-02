@@ -16,6 +16,13 @@
 
 <form class="col-lg-12 col-md-12">
 <br />
+
+<div class="form-group row offset-lg-1" v-if="confirmUpdateMsgFlag">
+<div class="alert alert-dismissible alert-success">
+ <button type="button" class="close" data-dismiss="alert">&times;</button>
+ <i class="fa fa-info-circle"></i>&nbsp;&nbsp;<strong>Updated successfully !</strong></div>
+</div>
+
 <div class="form-group row">
  <label for="inputEmail2" class="col-sm-3 col-md-3 col-lg-3 col-form-label">Name</label>
  <div class="col-sm-8 col-md-8 col-lg-8">
@@ -26,26 +33,26 @@
 <div class="form-group row">
 <label for="inputEmail3" class="col-sm-3 col-md-3 col-lg-3 col-form-label">Email</label>
 <div class="col-sm-8 col-md-8 col-lg-8">
- <input type="email" class="form-control" id="inputEmail3" placeholder="Email" v-model="editingEmployeeDetails[0].email">
+ <input type="email" ref="updateEmail" class="form-control" id="inputEmail3" placeholder="Email" v-model="editingEmployeeDetails[0].email">
 </div>
 </div>
 <div class="form-group row">
 <label for="inputEmail3" class="col-sm-3 col-md-3 col-lg-3 col-form-label">Phone</label>
 <div class="col-sm-8 col-md-8 col-lg-8">
- <input type="text" class="form-control" id="inputEmail3" placeholder="Phone" v-model="editingEmployeeDetails[0].phone">
+ <input type="text" class="form-control" ref="updatePhone" id="inputEmail3" placeholder="Phone" v-model="editingEmployeeDetails[0].phone">
 </div>
 </div>
 <div class="form-group row">
 <label for="inputEmail3" class="col-sm-3 col-md-3 col-lg-3 col-form-label">Age</label>
 <div class="col-sm-8 col-md-8 col-lg-8">
- <input type="text" class="form-control" placeholder="Age" v-model="editingEmployeeDetails[0].age">
+ <input type="text" class="form-control" placeholder="Age" ref="updateAge" v-model="editingEmployeeDetails[0].age">
 </div>
 </div>
 <div class="form-group row">
 <label for="inputEmail3" class="col-sm-3 col-md-3 col-lg-3 col-form-label">Profession</label>
 <div class="col-sm-8 col-md-8 col-lg-8">
- <select class="form-control" id="exampleFormControlSelect1">
-   <option v-for="professionOption in editingProfessionOptions" :selected="professionOption == editingEmployeeDetails[0].profession">{{ professionOption }}</option>
+ <select class="form-control" id="exampleFormControlSelect1" v-model="editingEmployeeDetails[0].profession">
+   <option v-for="professionOption in editingProfessionOptions">{{ professionOption }}</option>
  </select>
 </div>
 </div>
@@ -53,7 +60,7 @@
 <div class="form-group row">
 <label for="inputEmail3" class="col-sm-3 col-md-3 col-lg-3 col-form-label">Address</label>
 <div class="col-sm-8 col-md-8 col-lg-8">
-  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" v-model="editingEmployeeDetails[0].address">
+  <textarea class="form-control" ref="updateAddress" id="exampleFormControlTextarea1" rows="3" v-model="editingEmployeeDetails[0].address">
   </textarea>
 </div>
 </div>
@@ -61,7 +68,7 @@
 </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" @click="updateClicked()"><i class="fa fa-pencil-square-o"
+        <button type="button" class="btn btn-primary" @click="updateEmployee()"><i class="fa fa-pencil-square-o"
         aria-hidden="true"></i>&nbsp;&nbsp;Update</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal"
         @click="editClickedNow()">Close</button>
@@ -83,9 +90,6 @@ export default {
     editStatus: {
       type: Boolean,
     },
-    updateClicked: {
-      type: Function,
-    },
     toEditKey: {
       type: String,
     },
@@ -95,7 +99,26 @@ export default {
     return {
       editingEmployeeDetails: [],
       editingProfessionOptions: [],
+      confirmUpdateMsgFlag: false,
     };
+  },
+  methods: {
+    updateEmployee() {
+      // TODO : Add your update code here ...
+      employee.child(this.editingEmployeeDetails[0]._id).update({
+        emp_name: this.$refs.updateName.value,
+        email: this.$refs.updateEmail.value,
+        age: this.$refs.updateAge.value,
+        phone: this.$refs.updatePhone.value,
+        profession: this.editingEmployeeDetails[0].profession,
+        address: this.$refs.updateAddress.value,
+      });
+      this.confirmUpdateMsgFlag = true;
+      setTimeout(() => {
+        this.confirmUpdateMsgFlag = false;
+        jQuery('#editEmployee').modal('hide');
+      }, 2000);
+    },
   },
   mounted() {
     jQuery('#editEmployee').modal('show');

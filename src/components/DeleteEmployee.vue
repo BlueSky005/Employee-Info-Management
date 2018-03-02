@@ -13,7 +13,15 @@
 
 <form class="col-lg-12 col-md-12">
 <br />
+<div class="form-group row offset-lg-1" v-if="deleteConfirmMsg">
+<div class="alert alert-dismissible alert-danger">
+ <button type="button" class="close" data-dismiss="alert">&times;</button>
+ <i class="fa fa-info-circle"></i>&nbsp;&nbsp;<strong>Deleted successfully !</strong>
+</div>
+</div>
+<div class="form-group row" v-if="proceedDeleteMsgFlag">
   <span style="color: red; font-weight: bold;">Proceed to delete the document ?</span><br /><br />
+</div>
   <div class="form-group row">
  <label for="inputEmail2" class="col-sm-3 col-md-3 col-lg-3 col-form-label">Name</label>
  <div class="col-sm-9 col-md-9 col-lg-9">
@@ -55,7 +63,7 @@
 </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" @click="deleteClicked()"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp;&nbsp;Delete</button>
+        <button type="button" class="btn btn-primary" @click="deleteEmployee()"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp;&nbsp;Delete</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal" @click="deleteClickedNow()">Close</button>
       </div>
     </div>
@@ -72,9 +80,6 @@ export default {
     deleteClickedNow: {
       type: Function,
     },
-    deleteClicked: {
-      type: Function,
-    },
     deleteStatus: {
       type: Boolean,
     },
@@ -85,11 +90,25 @@ export default {
   data() {
     return {
       deletingEmployeeDetails: [],
+      deleteConfirmMsg: false,
+      proceedDeleteMsgFlag: true,
     };
+  },
+  methods: {
+    deleteEmployee() {
+      // TODO : Add your delete code here ...
+      employee.child(this.toDeleteKey).remove();
+      this.deleteConfirmMsg = true;
+      this.proceedDeleteMsgFlag = false;
+      setTimeout(() => {
+        this.deleteConfirmMsg = false;
+        this.proceedDeleteMsgFlag = true;
+        jQuery('#deleteEmployee').modal('hide');
+      }, 2000);
+    },
   },
   mounted() {
     jQuery('#deleteEmployee').modal('show');
-    this.$refs.updateName.focus();
   },
   created() {
     const filteredData = [];
