@@ -68,12 +68,12 @@
   </tr>
 </thead>
 <tbody>
-  <tr class="table-primary" v-for="(filteredEmp, index) of filteredEmployees" v-bind:key="index">
+  <tr class="table-primary" v-for="filteredEmp of filteredEmployees" v-bind:key="filteredEmp['_id']">
     <td>{{ filteredEmp.emp_name }}</td>
     <td>{{ filteredEmp.gender }}</td>
     <td>{{ filteredEmp.profession }}</td>
-    <td><i class="fa fa-pencil" aria-hidden="true" style="color: green;" @click="editClicked(filteredEmp._id)"></i></td>
-    <td><i class="fa fa-times" aria-hidden="true" style="color: red;" @click="deleteClicked(filteredEmp._id)"></i></td>
+    <td><i class="fa fa-pencil" aria-hidden="true" style="color: green;" @click="editClicked(filteredEmp['_id'])"></i></td>
+    <td><i class="fa fa-times" aria-hidden="true" style="color: red;" @click="deleteClicked(filteredEmp['_id'])"></i></td>
   </tr>
 </tbody>
 </table>
@@ -87,11 +87,11 @@
                    <br /><br />
 
                   <div class="row" v-if="editClickedStatus == true">
-                     <EditEmployee :editClickedNow="editClicked" :editStatus="editClickedStatus"></EditEmployee>
+                     <EditEmployee :editClickedNow="editClicked" :toEditKey="selectedKey" :editStatus="editClickedStatus"></EditEmployee>
                   </div>
 
                   <div class="row" v-if="deleteClickedStatus == true">
-                    <DeleteEmployee :deleteClickedNow="deleteClicked" :deleteStatus="deleteClickedStatus"></DeleteEmployee>
+                    <DeleteEmployee :deleteClickedNow="deleteClicked" :toDeleteKey="selectedKey" :deleteStatus="deleteClickedStatus"></DeleteEmployee>
                   </div>
 
  </div>
@@ -116,6 +116,7 @@ export default {
       professionOptions: [],
       searchName: '',
       testing: '',
+      selectedKey: '',
     };
   },
   firebase: {
@@ -144,10 +145,12 @@ export default {
     },
     editClicked(key) {
       this.editClickedStatus = !this.editClickedStatus;
-      this.testing = key;
+      // this.testing = key;
+      this.selectedKey = key;
     },
-    deleteClicked() {
+    deleteClicked(key) {
       this.deleteClickedStatus = !this.deleteClickedStatus;
+      this.selectedKey = key;
     },
   },
   components: {
