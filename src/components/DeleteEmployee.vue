@@ -55,7 +55,7 @@
 </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp;&nbsp;Delete</button>
+        <button type="button" class="btn btn-primary" @click="deleteClicked()"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp;&nbsp;Delete</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal" @click="deleteClickedNow()">Close</button>
       </div>
     </div>
@@ -70,6 +70,9 @@ import { employee } from '../firebase';
 export default {
   props: {
     deleteClickedNow: {
+      type: Function,
+    },
+    deleteClicked: {
       type: Function,
     },
     deleteStatus: {
@@ -87,7 +90,6 @@ export default {
   mounted() {
     jQuery('#deleteEmployee').modal('show');
     this.$refs.updateName.focus();
-    alert(this.toDeleteKey);
   },
   created() {
     const filteredData = [];

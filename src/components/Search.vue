@@ -87,11 +87,12 @@
                    <br /><br />
 
                   <div class="row" v-if="editClickedStatus == true">
-                     <EditEmployee :editClickedNow="editClicked" :toEditKey="selectedKey" :editStatus="editClickedStatus"></EditEmployee>
+                     <EditEmployee :editClickedNow="editClicked" :updateClicked="updateEmployee" :toEditKey="selectedKey" :editStatus="editClickedStatus"></EditEmployee>
                   </div>
 
                   <div class="row" v-if="deleteClickedStatus == true">
-                    <DeleteEmployee :deleteClickedNow="deleteClicked" :toDeleteKey="selectedKey" :deleteStatus="deleteClickedStatus"></DeleteEmployee>
+                    <DeleteEmployee :deleteClickedNow="deleteClicked"
+                    :deleteClicked="deleteEmployee" :toDeleteKey="selectedKey" :deleteStatus="deleteClickedStatus"></DeleteEmployee>
                   </div>
 
  </div>
@@ -147,6 +148,12 @@ export default {
       this.editClickedStatus = !this.editClickedStatus;
       // this.testing = key;
       this.selectedKey = key;
+    },
+    updateEmployee() {
+      // TODO : Add your update code here ...
+    },
+    deleteEmployee() {
+      // TODO : Add your delete code here ...
     },
     deleteClicked(key) {
       this.deleteClickedStatus = !this.deleteClickedStatus;

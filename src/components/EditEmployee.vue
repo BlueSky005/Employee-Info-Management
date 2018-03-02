@@ -15,10 +15,7 @@
         <div class="form-horizontal offset-md-1 offset-sm-1">
 
 <form class="col-lg-12 col-md-12">
-<br /> <!--<br />
-<div class="form-group row col-md-10">
- <h5 style="color: gray;"><i class="fa fa-tags fa-lg"></i>&nbsp;&nbsp;EIS - Add Employee</h5>
-</div><hr /><br /> -->
+<br />
 <div class="form-group row">
  <label for="inputEmail2" class="col-sm-3 col-md-3 col-lg-3 col-form-label">Name</label>
  <div class="col-sm-8 col-md-8 col-lg-8">
@@ -64,7 +61,7 @@
 </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary"><i class="fa fa-pencil-square-o"
+        <button type="button" class="btn btn-primary" @click="updateClicked()"><i class="fa fa-pencil-square-o"
         aria-hidden="true"></i>&nbsp;&nbsp;Update</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal"
         @click="editClickedNow()">Close</button>
@@ -85,6 +82,9 @@ export default {
     },
     editStatus: {
       type: Boolean,
+    },
+    updateClicked: {
+      type: Function,
     },
     toEditKey: {
       type: String,
