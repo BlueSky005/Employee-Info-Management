@@ -35,14 +35,14 @@
  </div>
 </div>
 <div class="form-group row">
- <label for="inputEmail3" class="col-sm-3 col-form-label">Phone</label>
+ <label for="inputEmail4" class="col-sm-3 col-form-label">Phone</label>
  <div class="col-sm-9 col-lg-8">
-   <input type="text" ref="phone" class="form-control" :class=" { 'is-invalid': isInvalid.phoneNoInvalid }" id="inputEmail3" placeholder="Enter the contact number ...">
+   <input type="text" ref="phone" class="form-control" :class=" { 'is-invalid': isInvalid.phoneNoInvalid }" id="inputEmail4" placeholder="Enter the contact number ...">
    <div class="invalid-feedback animated flipInX">Please enter the contact number.</div>
  </div>
 </div>
 <div class="form-group row">
- <label for="inputEmail3" class="col-sm-3 col-form-label">Age</label>
+ <label for="inputEmail5" class="col-sm-3 col-form-label">Age</label>
  <div class="col-sm-9 col-lg-8">
    <select class="form-control" id="exampleFormControlSelect1" v-model="selectedAge">
      <option v-for="ageOption in ageOptions">{{ ageOption }}</option>
@@ -50,7 +50,7 @@
  </div>
 </div>
 <div class="form-group row">
- <label for="inputEmail3" class="col-sm-3 col-form-label">Profession</label>
+ <label for="inputEmail6" class="col-sm-3 col-form-label">Profession</label>
  <div class="col-sm-9 col-lg-8">
    <select class="form-control" id="exampleFormControlSelect1" v-model="selectedInventoryProfession">
      <option v-for="professionOption in professionOptions">{{ professionOption }}</option>
@@ -72,7 +72,7 @@
 </div>
 </fieldset>
 <div class="form-group row">
- <label for="inputEmail3" class="col-sm-3 col-form-label">Address</label>
+ <label for="inputEmail7" class="col-sm-3 col-form-label">Address</label>
  <div class="col-sm-9 col-lg-8">
     <textarea placeholder="Enter the address ..." ref="address" class="form-control" :class=" { 'is-invalid': isInvalid.addressInvalid }" id="exampleFormControlTextarea1" rows="3"></textarea>
     <div class="invalid-feedback animated flipInX">Please enter your address.</div>

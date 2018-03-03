@@ -28,7 +28,7 @@
           <div class="input-group-prepend">
             <div class="input-group-text"><i class="fa fa-eye" aria-hidden="true"></i></div>
            </div>
-           <input type="password" class="form-control" ref="loginUserPassword" id="inlineFormInputGroupUsername" placeholder="Password" :class=" { 'is-invalid': isLoginInValid.loginPasswordInvalid }">
+           <input type="password" class="form-control" ref="loginUserPassword" id="inlineFormInputGroupUserPassword" placeholder="Password" :class=" { 'is-invalid': isLoginInValid.loginPasswordInvalid }">
            <div class="invalid-feedback animated flipInX">Please enter the password.</div>
         </div>
       </div>
@@ -52,6 +52,9 @@ export default {
     loginCurrentStatus: {
       type: Boolean,
     },
+    loginSuccess: {
+      type: Function,
+    }
   },
 
   data() {
@@ -83,20 +86,9 @@ export default {
       } else if ((userId !== '') && (userPassword !== '')) {
         this.isLoginInValid.loginUserInvalid = false;
         this.isLoginInValid.loginPasswordInvalid = false;
-        const allUsers = [];
-        user.orderByValue().on('child_added', (snapshot) => {
-          allUsers.push({ user_id: snapshot.val().user_id,
-            password: snapshot.val().password });
-        });
-        const enteredId = this.$refs.loginUserId.value;
-        const enteredPwd = parseInt(this.$refs.loginUserPassword.value, 10);
-        const loginStateIndex = _.findIndex(allUsers, { user_id: enteredId, password: enteredPwd });
-        if (loginStateIndex !== -1) {
-          this.loginCurrentStatus = true;
-        } else {
-          this.isLoginInValid.invalidLogin = true;
-          this.$refs.loginUserId.focus();
-        }
+
+        this.$emit('updateLoginState', true);
+        jQuery('#exampleModalCenter').modal('hide');
       }
     },
   },

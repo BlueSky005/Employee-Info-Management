@@ -1,19 +1,20 @@
 <template>
   <div id="app">
-    <div class="container" v-if="loginStatus">
-        <div class="row">
-          <NavBar></NavBar>
-        </div>
-        <div class="row" style="background-color: #ffff;">
-          <router-view></router-view>
-        </div><!-- end of content row -->
-        <div class="row">
-          <Footer></Footer>
-        </div>
-    </div>
-    <div class="container" v-else>
+    <div class="container" v-if="!loginStatus">
       <div class="row">
-        <Login :loginCurrentStatus="loginStatus"></Login>
+        <Login :loginCurrentStatus="loginStatus" @updateLoginState="loginStatus = $event"></Login>
+      </div>
+
+    </div>
+    <div class="container" v-if="loginStatus">
+      <div class="row">
+        <NavBar></NavBar>
+      </div>
+      <div class="row" style="background-color: #ffff;">
+        <router-view></router-view>
+      </div><!-- end of content row -->
+      <div class="row">
+        <Footer></Footer>
       </div>
     </div>
   </div>
