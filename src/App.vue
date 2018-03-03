@@ -13,7 +13,7 @@
     </div>
     <div class="container" v-else>
       <div class="row">
-        <Login :changeLoginStatus="changeLoginStatus" :loginCurrentStatus="loginStatus"></Login>
+        <Login :loginCurrentStatus="loginStatus"></Login>
       </div>
     </div>
   </div>
@@ -25,6 +25,7 @@ import NavBar from './components/NavBar';
 import Footer from './components/Footer';
 import Login from './components/Login';
 
+
 export default {
 
   data() {
@@ -32,11 +33,6 @@ export default {
       name: 'App',
       loginStatus: false,
     };
-  },
-  methods: {
-    changeLoginStatus() {
-      this.loginStatus = !this.loginStatus;
-    },
   },
   components: {
     NavBar,

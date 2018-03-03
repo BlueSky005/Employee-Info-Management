@@ -99,7 +99,7 @@ class="btn btn-primary offset-lg-3 offset-md-3 offset-sm-3 offset-xsm-1">
 <script>
 
 import _ from 'lodash';
-import { gender, profession, employee, db } from '../firebase';
+import { gender, profession, employee } from '../firebase';
 
 export default {
 
