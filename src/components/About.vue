@@ -1,6 +1,12 @@
 <template>
   <div>
-     <h4 class="animated fadeIn">Content inside the About goes here ...</h4>
+     <div class="container">
+       <div class="row">
+         <h4 class="animated fadeIn">Coming Soon...</h4><br /><br />
+         <br /><br /><br /><br /><br /><br /><br /><br />
+         <br /><br /><br /><br /><br /><br />
+       </div>
+     </div>
   </div>
 </template>
 

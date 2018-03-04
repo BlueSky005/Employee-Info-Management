@@ -9,7 +9,7 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarColor01">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item active">
+          <li class="nav-item router-link-exact-active">
             <router-link to='/inventory'><h4 class="nav-link">Inventory <span class="sr-only">(current)</span></h4></router-link>
           </li>
           <li class="nav-item">
@@ -30,7 +30,7 @@
     </button>
     <div class="dropdown-menu" aria-labelledby="btnGroupDrop1" style="text-align: center;">
       <a class="dropdown-item" href="#"><img src="/static/user.png" /></a>
-      <a class="dropdown-item" href="#">Log Out</a>
+      <a class="dropdown-item" href="/inventory">Log Out</a>
     </div>
   </div>
 										</ul>
@@ -40,10 +40,31 @@
 
 <script>
 export default {
+  data() {
+    return {
+      navInventoryClickStatus: 'true',
+      navSearchClickStatus: 'false',
+      navAboutClickStatus: 'false',
+    };
+  }
 };
 </script>
 
 <style>
 @import 'font-awesome';
   a:hover { text-decoration: none;}
+  .activeIndicator { color: #fff; }
+
+  nav li:hover {
+   background-color: #575c7a;
+   cursor: pointer;
+ }
+/*.router-link-active {
+  background-color: #575c7a;
+  cursor: pointer;
+}
+.router-link-exact-active {
+  background-color: #575c7a;
+  cursor: pointer;
+}*/
 </style>
