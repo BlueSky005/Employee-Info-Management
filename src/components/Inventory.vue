@@ -45,7 +45,7 @@
  <label for="inputEmail5" class="col-sm-3 col-form-label">Age</label>
  <div class="col-sm-9 col-lg-8">
    <select class="form-control" id="exampleFormControlSelect1" v-model="selectedAge">
-     <option v-for="ageOption in ageOptions">{{ ageOption }}</option>
+     <option v-for="ageOption in ageOptions" v-bind:key="ageOption.key">{{ ageOption }}</option>
    </select>
  </div>
 </div>
@@ -53,7 +53,7 @@
  <label for="inputEmail6" class="col-sm-3 col-form-label">Profession</label>
  <div class="col-sm-9 col-lg-8">
    <select class="form-control" id="exampleFormControlSelect1" v-model="selectedInventoryProfession">
-     <option v-for="professionOption in professionOptions">{{ professionOption }}</option>
+     <option v-for="professionOption in professionOptions" v-bind:key="professionOption.key">{{ professionOption }}</option>
    </select>
  </div>
 </div>
@@ -61,7 +61,7 @@
 <div class="row">
 <legend class="col-form-label col-sm-3 pt-0">Gender</legend>
 <div class="col-sm-9 col-lg-8">
-  <div class="form-check form-check-inline" v-for="genderOption in genderOptions">
+  <div class="form-check form-check-inline" v-for="genderOption in genderOptions" v-bind:key="genderOption.key">
     <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1"
      :value="genderOption" v-model="gender">
     <label class="form-check-label" for="gridRadios1">

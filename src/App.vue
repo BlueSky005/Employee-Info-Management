@@ -49,7 +49,7 @@ export default {
 @import '../static/animate.css';
 
 body {
-  background-image: url('/static/background_gradient.jpg');
+  background-image: url('/static/background_gradient.jpeg');
 }
 
 </style>

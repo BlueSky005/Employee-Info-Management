@@ -30,7 +30,7 @@
     </button>
     <div class="dropdown-menu" aria-labelledby="btnGroupDrop1" style="text-align: center;">
       <a class="dropdown-item" href="#"><img src="/static/user.png" /></a>
-      <a class="dropdown-item" href="/inventory">Log Out</a>
+      <a class="dropdown-item" href="http://localhost:8080/inventory">Log Out</a>
     </div>
   </div>
 										</ul>
